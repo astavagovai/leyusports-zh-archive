@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>乐鱼体育 · 赛事资讯与运动对照参考</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: #f6f8fa;
+      color: #1a1f2c;
+      line-height: 1.6;
+    }
+
+    /* 深色头图 */
+    .hero {
+      background: linear-gradient(145deg, #0c141f 0%, #1b2636 100%);
+      color: #ecf0f3;
+      padding: 3.6rem 1.8rem 4rem;
+      text-align: center;
+      border-bottom: 4px solid #3b7cbf;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero .sub {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      max-width: 600px;
+      margin: 0.4rem auto 0;
+    }
+
+    .hero .badge {
+      display: inline-block;
+      margin-top: 1.2rem;
+      background: #1f3349;
+      padding: 0.35rem 1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      color: #b6d0ea;
+      border: 1px solid #3b5f81;
+    }
+
+    /* 导航区（顶部简洁行） */
+    .top-nav {
+      background: #0c141f;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.2rem 2.5rem;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #2f4057;
+    }
+
+    .top-nav a {
+      color: #cbdae9;
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 0.2rem 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .top-nav a:hover {
+      color: #ffffff;
+      border-bottom-color: #5699e6;
+    }
+
+    .top-nav a.highlight {
+      color: #ffffff;
+      font-weight: 500;
+      border-bottom-color: #5699e6;
+    }
+
+    /* 主内容容器（浅色正文区） */
+    .container {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3.5rem;
+    }
+
+    /* 介绍段落 */
+    .intro-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2.2rem 2.5rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+      margin-bottom: 2.8rem;
+    }
+
+    .intro-card p {
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+    }
+
+    .intro-card a {
+      color: #1e6bb8;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 500;
+    }
+
+    .intro-card a:hover {
+      color: #0b3b6b;
+      background: #e7eff9;
+      border-radius: 3px;
+      padding: 0 0.15rem;
+    }
+
+    /* 三个场景模块 —— 卡片式 */
+    .scenes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin: 2.2rem 0 2.5rem;
+    }
+
+    .scene-card {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 1.8rem 1.6rem 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      border: 1px solid #e4e9f0;
+      transition: box-shadow 0.18s, transform 0.1s;
+    }
+
+    .scene-card:hover {
+      box-shadow: 0 8px 24px rgba(30, 40, 60, 0.08);
+      transform: translateY(-3px);
+    }
+
+    .scene-card .icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .scene-card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: #0c1a2b;
+      border-left: 4px solid #3b7cbf;
+      padding-left: 0.6rem;
+    }
+
+    .scene-card p {
+      font-size: 0.98rem;
+      color: #2a3750;
+    }
+
+    .scene-card .tag {
+      display: inline-block;
+      margin-top: 0.8rem;
+      background: #eef3fa;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      color: #1f4670;
+    }
+
+    /* 常见说明 / FAQ 摘要 */
+    .faq-section {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 2.2rem;
+      margin: 2rem 0 1.5rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e2e9f1;
+    }
+
+    .faq-section h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.4rem;
+      color: #162434;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .faq-item {
+      margin-bottom: 1.4rem;
+      border-bottom: 1px dashed #d8e0ea;
+      padding-bottom: 1rem;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-item .q {
+      font-weight: 600;
+      color: #1d3149;
+      margin-bottom: 0.25rem;
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .faq-item .q::before {
+      content: "▸";
+      color: #3b7cbf;
+      font-weight: 700;
+    }
+
+    .faq-item .a {
+      font-size: 0.95rem;
+      color: #2f405b;
+      padding-left: 1.4rem;
+    }
+
+    .faq-item .a a {
+      color: #1e6bb8;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .faq-item .a a:hover {
+      background: #dfeaff;
+      border-radius: 3px;
+    }
+
+    /* 额外说明 / 延伸阅读 */
+    .reading-note {
+      background: #e7edf6;
+      border-radius: 30px;
+      padding: 1.5rem 2rem;
+      margin: 2.2rem 0 0.8rem;
+      text-align: center;
+      font-size: 0.98rem;
+      color: #12243b;
+      border: 1px solid #cad8e9;
+    }
+
+    .reading-note a {
+      color: #1b5e9e;
+      font-weight: 500;
+      text-decoration: underline;
+    }
+
+    /* 页脚 */
+    .footer {
+      text-align: center;
+      padding: 2rem 1.5rem 1.8rem;
+      color: #5c6e85;
+      font-size: 0.88rem;
+      border-top: 1px solid #dbe2ec;
+      background: #f0f4fa;
+    }
+
+    .footer a {
+      color: #2b5e8c;
+      text-decoration: underline;
+    }
+
+    /* 响应式 */
+    @media (max-width: 700px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .intro-card {
+        padding: 1.6rem;
+      }
+
+      .faq-section {
+        padding: 1.5rem;
+      }
+
+      .top-nav {
+        gap: 0.8rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .hero {
+        padding: 2.6rem 1rem 3rem;
+      }
+      .scenes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部导航（轻量） -->
+  <nav class="top-nav">
+    <a href="#" class="highlight">首页</a>
+    <a href="#">赛事</a>
+    <a href="#">对照</a>
+    <a href="#">延伸</a>
+    <a href="#">说明</a>
+  </nav>
+
+  <!-- 深色头图 -->
+  <header class="hero">
+    <h1>乐鱼体育</h1>
+    <p class="sub">赛事 · 参照 · 日常笔记</p>
+    <span class="badge">查询 · 对照 · 延伸阅读</span>
+  </header>
+
+  <!-- 浅色正文区 -->
+  <main class="container">
+
+    <!-- 核心介绍（自然嵌入链接） -->
+    <section class="intro-card">
+      <p>许多运动爱好者习惯在观看比赛的同时查阅规则、历史记录或术语含义。如果你也喜欢一边看球一边对照资料，<a href="https://leyusports-zh.com.cn">乐鱼体育</a>这个站点或许能帮你减少搜索步骤——它把常见项目的赛事数据、基础规则和背景信息整理在一起，方便日常随手翻看。</p>
+      <p>页面结构偏向实用，没有太多冗余装饰，适合从一场比赛出发，快速延展到相关知识点。无论是篮球、足球还是近年关注度上升的小众项目，都能找到一些基础线索。</p>
+    </section>
+
+    <!-- 三个场景模块 -->
+    <div class="scenes-grid">
+      <div class="scene-card">
+        <span class="icon">🏀</span>
+        <h3>赛前快速对照</h3>
+        <p>准备看一场直播前，先了解一下两队历史交手记录、近期状态和常用阵型。在 <a href="https://leyusports-zh.com.cn" style="text-decoration:underline; color:#1e6bb8;">乐鱼体育</a> 的赛事板块，可以按联赛或赛季筛选，不用跳转多个页面。</p>
+        <span class="tag">数据参照</span>
+      </div>
+
+      <div class="scene-card">
+        <span class="icon">📖</span>
+        <h3>规则与术语查询</h3>
+        <p>遇到没见过的判罚或战术术语，随手翻一下规则对照列表。页面把常见概念按运动分类，比如越位、违体、计分差异等，省去自己拼凑信息的时间。</p>
+        <span class="tag">阅读延伸</span>
+      </div>
+
+      <div class="scene-card">
+        <span class="icon">🧩</span>
+        <h3>背景延伸阅读</h3>
+        <p>一场经典比赛背后往往有历史脉络。从赛事沿革到明星球员成长路径，延伸阅读板块整合了简明的背景短文，帮助你更完整地理解竞技故事。</p>
+        <span class="tag">补充资料</span>
+      </div>
+    </div>
+
+    <!-- 常见说明（FAQ 摘要） -->
+    <section class="faq-section">
+      <h2>📌 常见说明</h2>
+
+      <div class="faq-item">
+        <div class="q">数据更新频率如何？</div>
+        <div class="a">基础数据（联赛积分、赛程等）随主要赛事周期更新，重大变动通常会在 24 小时内同步。具体日期请以页面标注为准。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="q">可以只看某一类运动的对照表吗？</div>
+        <div class="a">可以。首页和导航都按运动大类筛选，例如篮球、足球、网球等。部分内容还提供了 pdf 版本供离线对照。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="q">延伸阅读的文章来源是哪里？</div>
+        <div class="a">多数为编辑整理的赛事背景、规则演变摘要。如果你有希望补充的内容，可以通过站点内的反馈渠道留言。另外，查看完整赛事信息可前往 <a href="https://leyusports-zh.com.cn">乐鱼体育</a>。</div>
+      </div>
+    </section>
+
+    <!-- 延伸阅读提示 -->
+    <div class="reading-note">
+      📎 从一场比赛出发，延伸出更多理解维度。如果你喜欢对照阅读的方式，可以把 <a href="https://leyusports-zh.com.cn">乐鱼体育</a> 当作日常查询的参考页之一。
+    </div>
+
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p>内容整理参考自公开赛事资料 · 仅供个人学习对照</p>
+    <p style="margin-top: 0.3rem;">关于 <a href="https://leyusports-zh.com.cn">乐鱼体育</a> — 简洁、平实、可翻阅</p>
+  </footer>
+
+</body>
+</html>
